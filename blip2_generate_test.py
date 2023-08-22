@@ -1,5 +1,5 @@
 import torch
-from lavis.models import load_model_and_preprocess
+from models import load_model_and_preprocess
 from PIL import Image
 from torchinfo import summary
 import matplotlib.pyplot as plt
