@@ -80,26 +80,6 @@ all_features = np.concatenate(features, axis=0)
 #  pickle.dump(all_features, fo)
 
 
-def draw_image2d(save_name, coords, imgs, resize=(28, 28), zoom=1, frame_width=1, fig_size=(10, 8), dpi=80):
-
-    plt.figure()
-    fig, ax = plt.subplots(figsize=fig_size, dpi=dpi)
-
-    x_vec, y_vec = [], []
-    for coord, img_data in tqdm.tqdm(zip(coords, imgs)):
-        _x, _y = coord[0], coord[1]
-        image = plt.imread(img_data)  # 適切な画像読み込みメソッドを使用する
-        im = OffsetImage(image, zoom=zoom)
-        ab = AnnotationBbox(im, (_x, _y), xycoords='data', frameon=False)
-        ax.add_artist(ab)
-        x_vec.append(_x)
-        y_vec.append(_y)
-    ax.plot(x_vec, y_vec, 'ko', alpha=0)
-    plt.axis('off')
-    fig.savefig(save_name, bbox_inches='tight', pad_inches=0)
-    plt.close()
-
-
 reshaped_features = all_features[:, 0, :]
 
 print('reshaped_features.shape', reshaped_features.shape) #(28327, 257, 1408)
